@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="primeiro modelo">
+                <center>
+                    <h1>Cursos cadastrados no banco de dados</h1>
+                    <h:form>
+                        <b:dataTable 
+                            value="#{cursoBean.cursos}"
+                            var="c">
+                            <b:dataTableColumn value="#{c.id}"  label="ID" />
+                            <b:dataTableColumn value="#{c.titulo}" />
+                            <b:dataTableColumn value="#{c.descricao}" />
+                            <b:dataTableColumn value="#{c.cargaHoraria}"  />
+                            <b:dataTableColumn value="#{c.valor}"  />
+                            <b:dataTableColumn value="#{c.professor}" />
+
+                            <b:dataTableColumn>
+                                <f:facet name="header"> Ações </f:facet>
+                                <h:commandButton  value="Excluir" action="#{cursoBean.excluir(c)}"/>
+                                <h:commandButton  value="Atualizar" action="#{cursoBean.selecionar(c)}"/>
+
+                            </b:dataTableColumn>
+
+                        </b:dataTable>
+                        <h3>Formulario de edição</h3>
+                        <p:panelGrid columns="6">
+                            ID: <p:inputText value="#{cursoBean.c.id}"/>
+                            Titulo: <p:inputText value="#{cursoBean.c.titulo}"/>
+                            Descição: <p:inputText value="#{cursoBean.c.descricao}"/>
+                            Carga Horaria : <p:inputText value="#{cursoBean.c.cargaHoraria}"/>
+                            Valor: <p:inputText value="#{cursoBean.c.valor}"/>
+                            Professor: <p:inputText value="#{cursoBean.c.professor}"/>
+                        </p:panelGrid><br/><p/>
+
+                        <p:commandButton value="Editar" action="#{cursoBean.cadastrar()}" update="@form"/>
+                        <p:commandButton value="Concluir" action="#{cursoBean.concluir()}" update="@form"/>
+                        <br/><p/>
+                    </h:form>
+                    <b:jumbotron>
+                        <h:form>
+                            <br/><p/>
+
+                            <h3>Buscar por titulo:</h3>
+                            <p:inputText value="#{cursoBean.c.titulo}" placeholder="Buscar por titulo" />
+                            <p:commandButton value="Buscar"  update="@form" />
+                            <p:commandButton value="Limpar" action="#{cursoBean.limpar()}"  update="@form" /><br/><p/>
+                            <b:dataTable 
+                                value="#{cursoBean.cursoTitulo}"
+                                var="c">
+                                <b:dataTableColumn value="#{c.id}"  label="ID" />
+                                <b:dataTableColumn value="#{c.titulo}" />
+                                <b:dataTableColumn value="#{c.descricao}" />
+                                <b:dataTableColumn value="#{c.cargaHoraria}"  />
+                                <b:dataTableColumn value="#{c.valor}"  />
+                                <b:dataTableColumn value="#{c.professor}" />
+                            </b:dataTable>
+                        </h:form>
+                    </b:jumbotron>
+                                        <b:jumbotron>
+                        <h:form>
+                            <br/><p/>
+
+                            <h3>Buscar por ID:</h3>
+                            <p:inputText value="#{cursoBean.c.id}" placeholder="Buscar por titulo" />
+                            <p:commandButton value="Buscar"  update="@form" />
+                            <p:commandButton value="Limpar" action="#{cursoBean.limpar()}"  update="@form" /><br/><p/>
+                            <b:dataTable 
+                                value="#{cursoBean.cursoID}"
+                                var="c">
+                                <b:dataTableColumn value="#{c.id}"  label="ID" />
+                                <b:dataTableColumn value="#{c.titulo}" />
+                                <b:dataTableColumn value="#{c.descricao}" />
+                                <b:dataTableColumn value="#{c.cargaHoraria}"  />
+                                <b:dataTableColumn value="#{c.valor}"  />
+                                <b:dataTableColumn value="#{c.professor}" />
+                            </b:dataTable>
+                        </h:form>
+                    </b:jumbotron>
+
+
+
+
+
+
+
+
+
+
+
+                </center>
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

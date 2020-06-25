@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="primeiro modelo">
+
+        <center>
+            <h1>Funcionarios cadastrados no banco de dados</h1>
+            <h:form>
+
+                <b:dataTable 
+                    value="#{funcionarioBean.funcionarios}"
+                    var="funcionario">
+                    <b:dataTableColumn value="#{funcionario.id}"  label="ID" />
+                    <b:dataTableColumn value="#{funcionario.nome}" />
+                    <b:dataTableColumn value="#{funcionario.salario}" />
+                    <b:dataTableColumn value="#{funcionario.rg}"  />
+                    <b:dataTableColumn value="#{funcionario.cpf}"  />
+                    <b:dataTableColumn value="#{funcionario.cargo}" />
+                    <b:dataTableColumn>
+                        <f:facet name="header"> Ações </f:facet>
+                        <h:commandButton  value="Excluir" action="#{funcionarioBean.excluir(funcionario)}"/>
+                        <h:commandButton  value="Atualizar" action="#{funcionarioBean.selecionar(funcionario)}"/>
+
+                    </b:dataTableColumn>
+
+                </b:dataTable>
+                <h3>Formulario de edição</h3>
+                 <p:panelGrid columns="6">
+                    ID: <p:inputText value="#{funcionarioBean.f.id}"/>
+                    Nome: <p:inputText value="#{funcionarioBean.f.nome}"/>
+                    Salario: <p:inputNumber value="#{funcionarioBean.f.salario}" placeholder="Salario Bruto"/>
+                    RG: <p:inputText value="#{funcionarioBean.f.rg}"/>
+                    CPF: <p:inputText value="#{funcionarioBean.f.cpf}"/>
+                    Cargo: <p:inputText value="#{funcionarioBean.f.cargo}"/>
+                </p:panelGrid><br/><p/>
+                
+                <p:commandButton value="Editar" action="#{funcionarioBean.cadastrar()}" update="@form"/>
+                <p:commandButton value="Concluir" action="#{funcionarioBean.concluir()}" update="@form"/>
+                <br/><p/>
+            </h:form>
+
+        </center>
+        <h:form>
+
+
+
+            <b:jumbotron>
+                <center>
+                    <h3>Buscar por nome:</h3>
+                    <p:inputText value="#{funcionarioBean.f.nome}" placeholder="Buscar por nome" />
+                    <p:commandButton value="Buscar"  update="@form" />
+                    <p:commandButton value="Limpar" action="#{funcionarioBean.limpar()}"  update="@form" />
+
+                    <h2>Resultado da pesquisa: </h2>
+
+                </center>
+                <b:dataTable value="#{funcionarioBean.funcionarioNome}" var="funcionario">
+                    <b:dataTableColumn value="#{funcionario.id}" />
+                    <b:dataTableColumn value="#{funcionario.nome}" />
+                    <b:dataTableColumn value="#{funcionario.salario}" />
+                    <b:dataTableColumn value="#{funcionario.rg}" />
+                    <b:dataTableColumn value="#{funcionario.cpf}" />
+                    <b:dataTableColumn value="#{funcionario.cargo}" />
+                </b:dataTable>
+
+
+            </b:jumbotron>
+        </h:form>
+        <h:form>
+
+
+
+            <b:jumbotron>
+                <center>
+                    <h3>Buscar por ID:</h3>
+                    <p:inputText value="#{funcionarioBean.f.id}" placeholder="Buscar por ID" />
+                    <p:commandButton value="Buscar"  update="@form" />
+                    <p:commandButton value="Limpar" action="#{funcionarioBean.limpar()}"  update="@form" />
+
+                    <h2>Resultado da pesquisa: </h2>
+
+                </center>
+                <b:dataTable value="#{funcionarioBean.funcionarioID}" var="funcionario">
+                    <b:dataTableColumn value="#{funcionario.id}" />
+                    <b:dataTableColumn value="#{funcionario.nome}" />
+                    <b:dataTableColumn value="#{funcionario.salario}" />
+                    <b:dataTableColumn value="#{funcionario.rg}" />
+                    <b:dataTableColumn value="#{funcionario.cpf}" />
+                    <b:dataTableColumn value="#{funcionario.cargo}" />
+                </b:dataTable>
+
+
+            </b:jumbotron>
+        </h:form>
+
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

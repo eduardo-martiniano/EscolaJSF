@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="template.xhtml">
+            <ui:define name="primeiro modelo">
+
+                <center>
+                    <h1>Alunos Cadastrados no Banco de Dados</h1>
+                    <h:form>
+
+                        <b:dataTable 
+                            value="#{alunoBean.alunos}"
+                            var="a">
+                            <b:dataTableColumn value="#{a.cpf}"  label="CPF" />
+                            <b:dataTableColumn value="#{a.nome}" />
+                            <b:dataTableColumn value="#{a.rg}" />
+                            <b:dataTableColumn value="#{a.dataNascimento}"  />
+                            <b:dataTableColumn value="#{a.sexo}"  />
+                            <b:dataTableColumn value="#{a.curso}" />
+                            <b:dataTableColumn value="#{a.notaFinal}" />
+                            <b:dataTableColumn value="#{a.status}" />
+                            <b:dataTableColumn>
+                                <f:facet name="header"> Ações </f:facet>
+                                <h:commandButton  value="Excluir" action="#{alunoBean.excluir(a)}"/>
+                                <h:commandButton  value="Atualizar" action="#{alunoBean.selecionar(a)}"/>
+
+                            </b:dataTableColumn>
+
+                        </b:dataTable>
+                        <h3>Formulario de edição</h3>
+                        <p:panelGrid columns="4">
+                            CPF: <p:inputText value="#{alunoBean.a.cpf}"/>
+                            Nome: <p:inputText value="#{alunoBean.a.nome}"/>
+                            RG: <p:inputText value="#{alunoBean.a.rg}"/>
+                            DataNascimento: <p:datePicker value="#{alunoBean.a.dataNascimento}"/>
+                            Sexo: <p:inputText value="#{alunoBean.a.sexo}"/>
+                            Curso: <p:inputText value="#{alunoBean.a.curso}"/>
+                            Nota 1: <p:inputNumber value="#{alunoBean.sn.nota1}"/>
+                            Nota 2: <p:inputNumber value="#{alunoBean.sn.nota2}"/>
+                            Nota 3: <p:inputNumber value="#{alunoBean.sn.nota3}"/>
+                            Nota 4: <p:inputNumber value="#{alunoBean.sn.nota4}"/>
+
+                        </p:panelGrid><br/><p/>
+
+                        <p:commandButton value="Editar" action="#{alunoBean.cadastrar()}" update="@form"/>
+                        <p:commandButton value="Concluir" action="#{alunoBean.concluir()}" update="@form"/>
+                        <br/><p/>
+                    </h:form>
+
+                </center>
+                <h:form>
+
+
+
+                    <b:jumbotron>
+                        <center>
+                            <h3>Buscar por nome:</h3>
+                            <p:inputText value="#{alunoBean.a.nome}" placeholder="Buscar por nome" />
+                            <p:commandButton value="Buscar"  update="@form" />
+                            <p:commandButton value="Limpar" action="#{alunoBean.limpar()}"  update="@form" />
+
+                            <h2>Resultado da pesquisa: </h2>
+
+                        </center>
+                        <b:dataTable value="#{alunoBean.alunoNome}" var="a">
+                            <b:dataTableColumn value="#{a.cpf}"  label="CPF" />
+                            <b:dataTableColumn value="#{a.nome}" />
+                            <b:dataTableColumn value="#{a.rg}" />
+                            <b:dataTableColumn value="#{a.dataNascimento}"  />
+                            <b:dataTableColumn value="#{a.sexo}"  />
+                            <b:dataTableColumn value="#{a.curso}" />
+                            <b:dataTableColumn value="#{a.notaFinal}" />
+                            <b:dataTableColumn value="#{a.status}" />
+                        </b:dataTable>
+
+
+                    </b:jumbotron>
+                </h:form>
+                <h:form>
+
+
+
+                    <b:jumbotron>
+                        <center>
+                            <h3>Buscar por CPF:</h3>
+                            <p:inputText value="#{alunoBean.a.cpf}" placeholder="Buscar por CPF" />
+                            <p:commandButton value="Buscar"  update="@form" />
+                            <p:commandButton value="Limpar" action="#{alunoBean.limpar()}"  update="@form" />
+
+                            <h2>Resultado da pesquisa: </h2>
+
+                        </center>
+                        <b:dataTable value="#{alunoBean.alunoCpf}" var="a">
+                            <b:dataTableColumn value="#{a.cpf}"  label="CPF" />
+                            <b:dataTableColumn value="#{a.nome}" />
+                            <b:dataTableColumn value="#{a.rg}" />
+                            <b:dataTableColumn value="#{a.dataNascimento}"  />
+                            <b:dataTableColumn value="#{a.sexo}"  />
+                            <b:dataTableColumn value="#{a.curso}" />
+                            <b:dataTableColumn value="#{a.notaFinal}" />
+                            <b:dataTableColumn value="#{a.status}" />
+                        </b:dataTable>
+
+
+                    </b:jumbotron>
+
+                    <b:jumbotron>
+                        <center>
+                            <h3>Buscar por Status:</h3>
+                            <p:inputText value="#{alunoBean.a.status}" placeholder="Buscar por Status" />
+                            <p:commandButton value="Buscar"  update="@form" />
+                            <p:commandButton value="Limpar" action="#{alunoBean.limpar()}"  update="@form" />
+
+                            <h2>Resultado da pesquisa: </h2>
+
+                        </center>
+                        <b:dataTable value="#{alunoBean.alunoStatus}" var="a">
+                            <b:dataTableColumn value="#{a.cpf}"  label="CPF" />
+                            <b:dataTableColumn value="#{a.nome}" />
+                            <b:dataTableColumn value="#{a.rg}" />
+                            <b:dataTableColumn value="#{a.dataNascimento}"  />
+                            <b:dataTableColumn value="#{a.sexo}"  />
+                            <b:dataTableColumn value="#{a.curso}" />
+                            <b:dataTableColumn value="#{a.notaFinal}" />
+                            <b:dataTableColumn value="#{a.status}" />
+                        </b:dataTable>
+
+
+                    </b:jumbotron>
+                    <b:jumbotron>
+                        <center>
+                            <h3>Buscar por Data de Nascimento:</h3>
+                            <p:datePicker value="#{alunoBean.a.dataNascimento}" placeholder=" formato dd/mm/yyyy"  />
+                            <p:commandButton value="Buscar"  update="@form" />
+                            <p:commandButton value="Limpar" action="#{alunoBean.limpar()}"  update="@form" />
+
+                            <h2>Resultado da pesquisa: </h2>
+
+                        </center>
+                        <b:dataTable value="#{alunoBean.alunoNascimento}" var="a">
+                            <b:dataTableColumn value="#{a.cpf}"  label="CPF" />
+                            <b:dataTableColumn value="#{a.nome}" />
+                            <b:dataTableColumn value="#{a.rg}" />
+                            <b:dataTableColumn value="#{a.dataNascimento}"  />
+                            <b:dataTableColumn value="#{a.sexo}"  />
+                            <b:dataTableColumn value="#{a.curso}" />
+                            <b:dataTableColumn value="#{a.notaFinal}" />
+                            <b:dataTableColumn value="#{a.status}" />
+                        </b:dataTable>
+
+
+                    </b:jumbotron>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </h:form>
+
+
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

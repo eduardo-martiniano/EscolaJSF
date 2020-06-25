@@ -1,0 +1,14 @@
+bean\CursoBean.class
+entity\Funcionario_.class
+bean\FuncionarioBean.class
+entity\Curso.class
+entity\Aluno_.class
+entity\Aluno.class
+entity\Funcionario.class
+bean\AlunoBean.class
+bean\ProfessorBean.class
+entity\Professor.class
+util\FolhaPagamento.class
+entity\Curso_.class
+util\SituacaoNotas.class
+entity\Professor_.class
